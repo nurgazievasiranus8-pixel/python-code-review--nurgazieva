@@ -1,68 +1,59 @@
-## 2. Код калькулятора
-
-calculator.py:
-```python
-def add(a, b):
+def ADD(x, y):
     """Сложение двух чисел"""
-    return a + b
+    return x+y
 
-def subtract(a, b):
+def subtract(a,b):
     """Вычитание двух чисел"""
     return a - b
 
 def multiply(a, b):
     """Умножение двух чисел"""
-    return a * b
+    c = a * b
+    return c
 
 def divide(a, b):
     """Деление двух чисел"""
-    if b == 0:
-        raise ValueError("Ошибка: Деление на ноль!")
     return a / b
 
 def main():
     """Основная функция с консольным интерфейсом"""
-    print("Простой калькулятор")
-    print("Доступные операции: +, -, *, /")
-    print("Для выхода введите 'exit'")
+    print("Калькулятор")
     
     while True:
         try:
-            user_input = input("\nВведите выражение (например 5 + 3): ")
+            user_input = input("Введите выражение: ")
             
-            if user_input.lower() == 'exit':
-                print("Выход из калькулятора")
+            if user_input == "выход":
                 break
             
-            # Парсинг ввода
             parts = user_input.split()
-            if len(parts) != 3:
-                print("Ошибка: Используйте формат 'число оператор число'")
+            if len(parts) < 3:
+                print("Ошибка формата")
                 continue
             
             a = float(parts[0])
             operator = parts[1]
             b = float(parts[2])
             
-            # Выполнение операции
+            r = 0
             if operator == '+':
-                result = add(a, b)
+                r = ADD(a, b)
             elif operator == '-':
-                result = subtract(a, b)
+                r = subtract(a, b)
             elif operator == '*':
-                result = multiply(a, b)
+                r = multiply(a, b)
             elif operator == '/':
-                result = divide(a, b)
+                r = divide(a, b)
             else:
-                print("Ошибка: Неподдерживаемая операция")
+                print("Неизвестная операция")
                 continue
             
-            print(f"Результат: {result}")
+            if r > 100:
+                print("Большой результат")
+            print(f"Ответ: {r}")
             
-        except ValueError as e:
-            print(f"Ошибка: {e}")
-        except Exception as e:
-            print(f"Неожиданная ошибка: {e}")
+        except:
+            print("Ошибка")
 
 if name == "__main__":
     main()
